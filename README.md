@@ -16,7 +16,7 @@ Building this wasn’t just smooth sailing. Here are the core technical blockers
 ### 1. Managing Flask Contexts & NameErrors
 During early route building for user logins, the application crashed frequently with `NameError: name 'redirect' is not defined`. 
 * **The Root Cause:** I was trying to leverage Flask utilities across split routing logic without explicit dependency declaration.
-* **The Fix:** Re-architected the main workspace initialization file (`app.py`) to tightly bundle the core app lifecycle decorators: `from_flask import Flask, redirect, url_for, render_template, request`.
+* **The Fix:** Re-architected the main workspace initialization file (`app.py`) to tightly bundle the core app lifecycle decorators: `from flask import Flask, redirect, url_for, render_template, request`.
 
 ### 2. Broken File Templates (`TemplateNotFound`)
 At one point, the server completely refused to render my HTML pages (`dashboard.html`, `index.html`), throwing critical routing exceptions.
